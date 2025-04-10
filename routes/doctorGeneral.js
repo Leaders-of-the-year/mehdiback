@@ -2,9 +2,13 @@ const express = require('express');
 const router = express.Router();
 const { Pool } = require('pg');
 const pool = require('../config/db');  
-
+const cors = require('cors');
 const authenticateToken = require('../middlewares/authMiddleware'); 
 const authenticateRole = require('../middlewares/authenticateRole');  
+router.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true // If you use cookies or HTTP auth
+}));
 
 // Route for creating a new doctor-general (only accessible by authenticated users)
 router.post('/doctor-general', authenticateToken, authenticateRole('doctor_general'), async (req, res) => {

@@ -41,7 +41,7 @@ router.post('/register', async (req, res) => {
   profileInsert = await pool.query(
     `INSERT INTO doctor_general (first_name, last_name, doctor_number, specialization, years_of_experience, user_id) 
      VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
-    [first_name, last_name, doctor_number, specialization, years_of_experience, userId] // Add `userId` to the insert query
+    [first_name, last_name, doctor_number, specialization, years_of_experience, userId] 
   );
   break;
 
